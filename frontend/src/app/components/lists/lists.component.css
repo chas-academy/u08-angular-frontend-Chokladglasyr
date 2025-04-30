@@ -1,0 +1,17 @@
+button {
+    background-color: #8ECC7B;
+    width: 184px;
+    height: 36px;;
+    border-radius: 10px;
+    font-weight: 500;
+
+}
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+p {
+    width: fit-content;
+}
