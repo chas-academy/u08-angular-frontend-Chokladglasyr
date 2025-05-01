@@ -1,10 +1,5 @@
 button {
     background-color: #8ECC7B;
-    width: 184px;
-    height: 36px;;
-    border-radius: 10px;
-    font-weight: 500;
-
 }
 div {
     display: flex;
