@@ -56,3 +56,19 @@ img {
     width: 224px;
     height: 32px;
 }
+.btn-green, .btn-red {
+    width: 48px;
+    height: 24px;
+    border-radius: 10px;
+    background-color: #8ECC7B;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+.btn-red {
+    background-color: #F77B62;
+}

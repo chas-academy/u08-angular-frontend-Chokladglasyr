@@ -1,6 +1,4 @@
-button {
-    background-color: #8ECC7B;
-}
+
 main {
     display: flex;
     flex-direction: column;
@@ -25,4 +23,15 @@ main {
 }
 p {
     padding-bottom: 8px;
+}
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+@media (min-width: 790px) {
+    .list-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }
