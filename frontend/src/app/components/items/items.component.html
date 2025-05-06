@@ -1,1 +1,21 @@
-<p>items works!</p>
+<div id="back-btn">
+    <a onclick="history.back()" class="save-btn">Back</a>
+</div>
+<main>
+    <h1 id="title">@if (!listName){List}{{listName}}</h1>
+    <div id="items-container">
+        @for (item of items; track item; let i = $index) {
+            <div class="item-card" [attr.id]="'item-card-' + i">
+                <div class="item-text" [attr.id]="'item-text-'+i">
+                    <p>{{item.description}}</p>
+                    @if (item.price) {
+                        <p>{{item.price}}</p>
+                    }
+                </div>
+                <a [href]="item.link" id="item-link">{{item.link}}</a>
+                <img src="photoplaceholder.png" alt="square picture with text no photo" class="item-photo" id="item-photo">
+            </div>
+        }
+    </div>
+    <button type="submit" id="new-item" class="new-btn">Add new item</button>
+</main>

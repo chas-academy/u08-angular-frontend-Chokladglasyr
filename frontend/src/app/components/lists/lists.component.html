@@ -1,8 +1,28 @@
 <main id="my-lists">
-    <div>
     <article id="list-container">
+      @for (list of lists; track list; let i = $index) {
+      <div class="list-card" [attr.id]="'list-card-' + i">
+        <a
+          [routerLink]="'/items/'+ list._id"
+          class="list-text"
+          [attr.id]="'list-text-' + i"
+          [attr.title]="'Go to list ' + list.title"
+        >
+        <p>
+            {{ list.title }}
+        </p>
+        <p>
+            {{list.description}}
+        </p>
+        @if (list.username) {
+            <p>
+                {{list.username}}
+            </p>
+        }
+        </a>
+      </div>
+      }
     </article>
-    <p id="loadingMsg">Lists are loading, please wait.</p>
-    <button type="submit" id="new-list" >Create new list</button>
-    </div>
+    <!-- <p id="loadingMsg">Lists are loading, please wait.</p> -->
+    <a routerLink="/new-list" class="new-btn">Create new list</a>
 </main>

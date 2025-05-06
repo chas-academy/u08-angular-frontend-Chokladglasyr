@@ -1,12 +1,28 @@
 button {
     background-color: #8ECC7B;
 }
-div {
+main {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-
+    gap: 0.6rem;
+}
+.list-card {
+    border: solid black 1px;
+    width: 300px;
+    height: 100px;
+    border-radius: 5px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem;
+}
+.list-text {
+    font-weight: 500;
+    font-style: normal;
+    font-size: 12px;
 }
 p {
-    width: fit-content;
+    padding-bottom: 8px;
 }

@@ -16,6 +16,9 @@ div {
 }
 a {
     background-color: #8ECC7B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #my-list-btn {
     background-color: #D499EF;

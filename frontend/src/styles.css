@@ -3,7 +3,10 @@
     font-family: "Poppins", sans-serif;
     font-style: normal;
     font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
 }
+
 .footer{
     position: fixed;
     left: 0;
@@ -23,9 +26,27 @@ button, a {
 }
 a {
     text-decoration: none;
-    color: black;
+    color: black; 
+}
+main {
+    padding-bottom: 4rem;
+}
+.new-btn {
+    background-color: #8ECC7B;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+}
+img {
+    border-radius: 10px;
+}
+.save-btn {
+    width: 48px;
+    height: 24px;
+    border-radius: 10px;
+    background-color: #8ECC7B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
 }
