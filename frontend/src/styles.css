@@ -50,3 +50,9 @@ img {
     align-items: center;
     border: none;
 }
+.input-fields {
+    border-radius: 5px;
+    border: solid black 1px;
+    width: 224px;
+    height: 32px;
+}

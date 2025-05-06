@@ -2,9 +2,18 @@ img {
     width: 68px;
     border-radius: 10px;
 }
-header {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 1.6rem;
+}
+header {
+    margin: 1.6rem auto;
+    width: 60vw;
+}
+button {
+    height: auto;
+}
+#edit-gear {
+    width: 42px;
 }

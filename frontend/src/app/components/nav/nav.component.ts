@@ -13,6 +13,6 @@ export class NavComponent {
   token!: string | null;
   constructor(private tokenService: TokenService){
     this.token = this.tokenService.getToken();
+    // console.log(this.token)
   }
-
 }
