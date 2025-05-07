@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { List } from '../../models/list.model';
 import { ListService } from '../../services/list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-list',
@@ -13,7 +14,7 @@ export class NewListComponent{
   lists: List[] = [];
   newListForm: FormGroup;
 
-  constructor(private listService: ListService, private fb: FormBuilder) {
+  constructor(private listService: ListService, private fb: FormBuilder, private router: Router) {
     this.newListForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required]
@@ -30,6 +31,7 @@ export class NewListComponent{
       next: (createdList: List) => {
         this.lists.unshift(createdList);
         this.newListForm.reset();
+        this.router.navigate(['/lists']);
       },
       error: (err: unknown) => {
         if(err instanceof Error) {
