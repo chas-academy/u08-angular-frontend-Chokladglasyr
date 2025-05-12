@@ -1,19 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { List } from '../../models/list.model';
 import { ListService } from '../../services/list.service';
 import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-lists',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './lists.component.html',
   styleUrl: './lists.component.css'
 })
 export class ListsComponent implements OnInit {
   lists: List[] = [];
-
+  editingListIndex: number | null = null;
+  
+  
   constructor(private listService: ListService, private router: Router){}
-
+  
   ngOnInit(): void {
     this.loadLists();
   }
@@ -50,65 +53,38 @@ export class ListsComponent implements OnInit {
   }
 
   editList(
-    id: string,
-    title: string,
-    description: string,
-    userId: string,
     index: number
   ): void {
     try {
-  
-      const newTextContainer = document.createElement('div')
-      newTextContainer.setAttribute("class","list-text")
-      const newTitle = newTextContainer.appendChild(document.createElement("input"));
-      const newDescription = newTextContainer.appendChild(document.createElement("input"));
-      Object.assign(newTitle, {
-        value: `${title}`,
-        id: "title",
-      });
-      Object.assign(newDescription, {
-        value: `${description}`,
-        id: "description",
-      });
-      const listCard = document.getElementById(`list-card-${index}`);
-      listCard?.replaceChild(newTextContainer,listCard.childNodes[0] )
-
-      const editBtn = document.getElementById(`edit-list-${index}`)
-      const saveBtn = document.createElement('button');
-      Object.assign(saveBtn, {
-        className: 'btn-green',
-        type: 'button'
-      })
-      saveBtn.innerText = "Save";
-      editBtn?.replaceWith(saveBtn)
-      saveBtn.addEventListener("click", () => {
-        const updatedTitle = newTitle.value.trim();
-        const updatedDescription = newDescription.value.trim();
-        if (!updatedTitle || !updatedDescription) {
-          alert("Title and description are required.");
-          return;
-        }
-        this.listService.updateList(id, userId, updatedTitle, updatedDescription, index).subscribe({
-          next: () => {
-            console.log("list updated");
-            // this.lists.splice(index, 1);
-            window.location.reload();
-          },
-          error: (err: unknown) => {
-            if(err instanceof Error) {
-              console.error("Something went wrong", err);
-              return;
-            }
-          }
-        })
-      } );
-
-
+      this.editingListIndex = index;
     }catch (err: unknown) {
       if(err instanceof Error) {
         console.error("Something went wrong", err);
         return;
       }
     }
+  }
+
+  saveList(listId: string, userId: string, i:number): void {
+    const list = this.lists[i]
+        const updatedTitle = list.title.trim();
+        const updatedDescription = list.description.trim();
+        if (!updatedTitle || !updatedDescription) {
+          alert("Title and description are required.");
+          return;
+        }
+        this.listService.updateList(listId, userId, updatedTitle, updatedDescription, i).subscribe({
+        next: () => {
+          console.log("list updated");
+          this.editingListIndex = null;
+          window.location.reload();
+        },
+        error: (err: unknown) => {
+          if(err instanceof Error) {
+            console.error("Something went wrong", err);
+            return;
+          }
+        }
+  })
   }
 }

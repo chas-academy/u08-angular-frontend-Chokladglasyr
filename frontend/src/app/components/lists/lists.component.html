@@ -2,30 +2,50 @@
   <p id="errorMsg"></p>
     <article id="list-container">
       @for (list of lists; track list; let i = $index) {
-      <div class="list-card" [attr.id]="'list-card-' + i">
-        <a
-          [routerLink]="'/items/'+ list._id"
-          class="list-text"
-          [attr.id]="'list-text-' + i"
-          [attr.title]="'Go to list ' + list.title"
-        >
-        <p>
-            {{ list.title }}
-        </p>
-        <p>
-            {{list.description}}
-        </p>
-        @if (list.username) {
+        <div class="list-card" [attr.id]="'list-card-' + i">
+            @if (editingListIndex !== i) {
+            <a
+              [routerLink]="'/items/'+ list._id"
+              class="list-text"
+              [attr.id]="'list-text-' + i"
+              [attr.title]="'Go to list ' + list.title"
+            >
             <p>
-                {{list.username}}
+                {{ list.title }}
             </p>
-        }
-        </a>
-        <div class="btn-container">
-          <button type="submit" class="btn-green" id="edit-list-{{i}}" (click)="editList(list._id, list.title, list.description, list.userId, i)">Edit</button>
-          <button type="submit" class="btn-red" id="delete-list-{{i}}" (click)="deleteList(list._id, list.userId, i)">Delete</button>
-        </div>
-      </div>
+            <p>
+                {{list.description}}
+            </p>
+            @if (list.username) {
+                <p>
+                    {{list.username}}
+                </p>
+            }
+            </a>
+          } @else {
+            <div class="list-text">
+              <input type="text" [(ngModel)]= lists[i].title id="title">
+              <input type="text" [(ngModel)]= lists[i].description id="description">
+            </div>
+          }
+            <div class="btn-container">
+              @if (editingListIndex !== i){
+                <button type="submit" class="btn-green" id="edit-list-{{i}}" (click)="editList(i)">Edit</button>
+              } @else {
+                <button type="submit" class="btn-green" id="edit-list-{{i}}" (click)="saveList(list._id, list.userId, i)">Save</button>
+
+              }
+              <button type="submit" class="btn-red" id="delete-list-{{i}}" (click)="deleteList(list._id, list.userId, i)">Delete</button>
+            </div>
+          </div>
+        <!-- } @else {
+          <div id="editContainer" class="list-text">
+            c
+            <input type="text" [value]= lists[i].description id="description">
+            <button class="btn-green" type="button">Save</button>
+          </div>
+        } -->
+
       }
     </article>
     <!-- <p id="loadingMsg">Lists are loading, please wait.</p> -->
