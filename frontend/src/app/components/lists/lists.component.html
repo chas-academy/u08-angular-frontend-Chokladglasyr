@@ -22,7 +22,7 @@
         }
         </a>
         <div class="btn-container">
-          <button type="submit" class="btn-green" id="edit-list-{{i}}" (click)="editList(list._id, list.description, list.title, list.userId, i)">Edit</button>
+          <button type="submit" class="btn-green" id="edit-list-{{i}}" (click)="editList(list._id, list.title, list.description, list.userId, i)">Edit</button>
           <button type="submit" class="btn-red" id="delete-list-{{i}}" (click)="deleteList(list._id, list.userId, i)">Delete</button>
         </div>
       </div>

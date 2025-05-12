@@ -30,7 +30,7 @@ export class ListsComponent implements OnInit {
       }
     })
   }
-
+  
   deleteList(listId: string, userId: string, index: number): void {
     if(confirm("Sure you want to delete?")) {
       this.listService.deleteList(listId, userId).subscribe({
@@ -57,7 +57,7 @@ export class ListsComponent implements OnInit {
     index: number
   ): void {
     try {
-
+  
       const newTextContainer = document.createElement('div')
       newTextContainer.setAttribute("class","list-text")
       const newTitle = newTextContainer.appendChild(document.createElement("input"));
@@ -77,13 +77,31 @@ export class ListsComponent implements OnInit {
       const saveBtn = document.createElement('button');
       Object.assign(saveBtn, {
         className: 'btn-green',
-        type: 'submit'
+        type: 'button'
       })
       saveBtn.innerText = "Save";
-      saveBtn.addEventListener("click", this.listService.updateList);
       editBtn?.replaceWith(saveBtn)
-
-      
+      saveBtn.addEventListener("click", () => {
+        const updatedTitle = newTitle.value.trim();
+        const updatedDescription = newDescription.value.trim();
+        if (!updatedTitle || !updatedDescription) {
+          alert("Title and description are required.");
+          return;
+        }
+        this.listService.updateList(id, userId, updatedTitle, updatedDescription, index).subscribe({
+          next: () => {
+            console.log("list updated");
+            // this.lists.splice(index, 1);
+            window.location.reload();
+          },
+          error: (err: unknown) => {
+            if(err instanceof Error) {
+              console.error("Something went wrong", err);
+              return;
+            }
+          }
+        })
+      } );
 
 
     }catch (err: unknown) {

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { List } from '../models/list.model';
-import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +17,16 @@ export class ListService {
   }
   addList(listData: Omit<List, 'id'>): Observable<List> {
     return this.http.post<List>(`${this.apiUrl}`, listData)
-
-
   }
-  updateList(): void {
-    console.log("hej")
+  updateList(listId: string, userId: string, updatedTitle: string, updatedDescription: string, i: number): Observable<List> {
+    console.log(listId, userId, updatedDescription, updatedTitle)
+    const body = {
+      title: updatedTitle,
+      description: updatedDescription
+    }
+    return this.http.put<List>(`${this.apiUrl}/${userId}/${listId}`, body)
   }
   deleteList(listId: string, userId: string): Observable<List> {
-    console.log("hejdå")
     return this.http.delete<List>(`${this.apiUrl}/${userId}/${listId}`)
   }
 }
