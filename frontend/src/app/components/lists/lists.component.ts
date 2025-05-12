@@ -54,14 +54,7 @@ export class ListsComponent implements OnInit {
   editList(
     index: number
   ): void {
-    try {
       this.editingListIndex = index;
-    }catch (err: unknown) {
-      if(err instanceof Error) {
-        console.error("Something went wrong", err);
-        return;
-      }
-    }
   }
 
   saveList(listId: string, userId: string, i:number): void {
