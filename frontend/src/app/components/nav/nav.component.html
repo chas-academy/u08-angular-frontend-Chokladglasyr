@@ -3,8 +3,14 @@
         <button type="submit" onclick="location.href='./index.html'">
             <img title="Go to homepage" id="logo" src="wishlist.logo.png" alt="square logo, fingers crossed">
         </button>
-        <div id="editOrlogin">
-
-        </div>
+        @if(token){
+            <div id="logout">
+                <a routerLink="/edit-user"><img id="edit-gear" src="edit.png" alt="black gear" title="Edit profile"></a>
+            </div>
+        } @else {
+            <div id="login">
+                <a routerLink="/login">Login</a>
+            </div>
+        }
     </nav>
 </header>

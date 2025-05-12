@@ -3,7 +3,10 @@
     font-family: "Poppins", sans-serif;
     font-style: normal;
     font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
 }
+
 .footer{
     position: fixed;
     left: 0;
@@ -14,4 +17,58 @@
 button {
     border: none;
     background-color: unset;
+}
+button, a {
+    width: 184px;
+    height: 36px;;
+    border-radius: 10px;
+    font-weight: 500;
+}
+a {
+    text-decoration: none;
+    color: black; 
+}
+main {
+    padding-bottom: 4rem;
+}
+.new-btn {
+    background-color: #8ECC7B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img {
+    border-radius: 10px;
+}
+.save-btn {
+    width: 48px;
+    height: 24px;
+    border-radius: 10px;
+    background-color: #8ECC7B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+.input-fields {
+    border-radius: 5px;
+    border: solid black 1px;
+    width: 224px;
+    height: 32px;
+}
+.btn-green, .btn-red {
+    width: 48px;
+    height: 24px;
+    border-radius: 10px;
+    background-color: #8ECC7B;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+.btn-red {
+    background-color: #F77B62;
 }
