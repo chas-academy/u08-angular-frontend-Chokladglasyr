@@ -3,6 +3,9 @@ import { List } from '../../models/list.model';
 import { ListService } from '../../services/list.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TokenService } from '../../services/token.service';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-lists',
@@ -13,13 +16,35 @@ import { FormsModule } from '@angular/forms';
 export class ListsComponent implements OnInit {
   lists: List[] = [];
   editingListIndex: number | null = null;
-  
-  constructor(private listService: ListService, private router: Router){}
+  accessToken: string | null ='';
+  user: User | null = null;
+
+
+  constructor(
+    private listService: ListService,
+    private tokenService: TokenService,
+    private userService: UserService
+  ){}
   
   ngOnInit(): void {
+    this.accessToken = this.tokenService.getToken();
     this.loadLists();
+    this.getLoggedInUser();
   }
 
+  getLoggedInUser(): void {
+    this.userService.getProfile().subscribe({
+      next: data => {
+        this.user = data;
+        console.log(this.user._id)
+      }, 
+      error: (err: unknown) => {
+        if(err instanceof Error) {
+          console.error("Something went wrong when fetching lists", err);
+        }
+      }
+    })
+  }
   loadLists(): void {
     this.listService.getLists().subscribe({
       next: data => {

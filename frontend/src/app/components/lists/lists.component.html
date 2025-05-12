@@ -1,4 +1,5 @@
 <main id="my-lists">
+  <h1>All lists</h1>
   <p id="errorMsg"></p>
     <article id="list-container">
       @for (list of lists; track list; let i = $index) {
@@ -28,15 +29,19 @@
               <input type="text" [(ngModel)]= lists[i].description id="description">
             </div>
           }
-            <div class="btn-container">
-              @if (editingListIndex !== i){
-                <button type="submit" class="btn-green" id="edit-list-{{i}}" (click)="editList(i)">Edit</button>
-              } @else {
-                <button type="submit" class="btn-green" id="edit-list-{{i}}" (click)="saveList(list._id, list.userId, i)">Save</button>
-
-              }
-              <button type="submit" class="btn-red" id="delete-list-{{i}}" (click)="deleteList(list._id, list.userId, i)">Delete</button>
-            </div>
+            @if(accessToken && (list.userId === user?._id)) {
+              <div class="btn-container">
+                @if (editingListIndex !== i){
+                  <button type="submit" class="btn-green" id="edit-list-{{i}}" (click)="editList(i)">Edit</button>
+                } @else {
+                  <button type="submit" class="btn-green" id="edit-list-{{i}}" (click)="saveList(list._id, list.userId, i)">Save</button>
+  
+                }
+                <button type="submit" class="btn-red" id="delete-list-{{i}}" (click)="deleteList(list._id, list.userId, i)">Delete</button>
+              </div>
+            } @else {
+              <img src="wishlist.png" alt="woman on her phone">
+            }
           </div>
       }
     </article>
