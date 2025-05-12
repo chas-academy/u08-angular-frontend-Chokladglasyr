@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { List } from '../../models/list.model';
 import { ListService } from '../../services/list.service';
 import { Router, RouterLink } from '@angular/router';
@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
 export class ListsComponent implements OnInit {
   lists: List[] = [];
   editingListIndex: number | null = null;
-  
   
   constructor(private listService: ListService, private router: Router){}
   
@@ -67,6 +66,7 @@ export class ListsComponent implements OnInit {
 
   saveList(listId: string, userId: string, i:number): void {
     const list = this.lists[i]
+
         const updatedTitle = list.title.trim();
         const updatedDescription = list.description.trim();
         if (!updatedTitle || !updatedDescription) {
@@ -77,6 +77,7 @@ export class ListsComponent implements OnInit {
         next: () => {
           console.log("list updated");
           this.editingListIndex = null;
+          console.log(this.editingListIndex)
           window.location.reload();
         },
         error: (err: unknown) => {
@@ -86,5 +87,18 @@ export class ListsComponent implements OnInit {
           }
         }
   })
+  }
+  cancelEdit(): void {
+    this.editingListIndex = null;
+  }
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (this.editingListIndex === null) return;
+
+    const target = event.target as HTMLElement;
+    const editing = target.closest(`#list-card-${this.editingListIndex}`);
+    if (!editing) {
+      this.cancelEdit();
+    }
   }
 }

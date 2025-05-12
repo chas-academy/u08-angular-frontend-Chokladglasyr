@@ -23,7 +23,7 @@
             }
             </a>
           } @else {
-            <div class="list-text">
+            <div id="editingContainer" class="list-text">
               <input type="text" [(ngModel)]= lists[i].title id="title">
               <input type="text" [(ngModel)]= lists[i].description id="description">
             </div>
@@ -38,14 +38,6 @@
               <button type="submit" class="btn-red" id="delete-list-{{i}}" (click)="deleteList(list._id, list.userId, i)">Delete</button>
             </div>
           </div>
-        <!-- } @else {
-          <div id="editContainer" class="list-text">
-            c
-            <input type="text" [value]= lists[i].description id="description">
-            <button class="btn-green" type="button">Save</button>
-          </div>
-        } -->
-
       }
     </article>
     <!-- <p id="loadingMsg">Lists are loading, please wait.</p> -->
