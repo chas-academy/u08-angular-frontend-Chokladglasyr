@@ -17,6 +17,9 @@ export class UserService {
   getProfile(): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/profile`)
   }
+  getUserById(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${userId}`)
+  }
   addUser(UserData: Omit<User, 'id'>): Observable<User> {
     return this.http.post<User>(`${this.apiUrl}`, UserData)
   }

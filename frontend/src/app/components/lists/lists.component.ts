@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { List } from '../../models/list.model';
 import { ListService } from '../../services/list.service';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TokenService } from '../../services/token.service';
 import { UserService } from '../../services/user.service';
