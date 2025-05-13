@@ -17,3 +17,14 @@ button {
 #edit-gear {
     width: 42px;
 }
+.login {
+    display: flex;
+    width: 120px;
+    height: 36px;
+    border-radius: 20px;
+    border: none;
+    background-color: #8ECC7B;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}

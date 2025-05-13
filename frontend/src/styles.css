@@ -72,3 +72,6 @@ img {
 .btn-red {
     background-color: #F77B62;
 }
+#back-btn, .back-btn {
+    margin-left: 20vw;
+}

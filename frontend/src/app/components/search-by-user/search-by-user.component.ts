@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-search-by-user',
@@ -6,6 +6,13 @@ import { Component } from '@angular/core';
   templateUrl: './search-by-user.component.html',
   styleUrl: './search-by-user.component.css'
 })
-export class SearchByUserComponent {
+export class SearchByUserComponent implements OnInit {
 
+  constructor(){
+  
+  }
+
+  ngOnInit(): void {
+    
+  }
 }

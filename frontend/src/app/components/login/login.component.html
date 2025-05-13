@@ -1,10 +1,25 @@
 <main>
-    <button type="submit" onclick="location.href='./index.html'">
-        <img title="Go to homepage" id="logo" src="wishlist.logo.png" alt="square logo, fingers crossed">
-    </button>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="new-list">
-    <input type="email" formControlName="email" class="input-fields" placeholder="Email">
-    <input type="password" formControlName="password" class="input-fields" placeholder="Password">
+  <button type="submit" onclick="location.href='./index.html'">
+    <img
+      title="Go to homepage"
+      id="logo"
+      src="wishlist.logo.png"
+      alt="square logo, fingers crossed"
+    />
+  </button>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="new-list">
+    <input
+      type="email"
+      formControlName="email"
+      class="input-fields"
+      placeholder="Email"
+    />
+    <input
+      type="password"
+      formControlName="password"
+      class="input-fields"
+      placeholder="Password"
+    />
     <button type="submit" [disabled]="loginForm.invalid">Login</button>
-    </form>
+  </form>
 </main>
