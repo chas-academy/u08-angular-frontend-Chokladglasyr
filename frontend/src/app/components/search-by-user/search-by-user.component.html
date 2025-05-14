@@ -3,11 +3,40 @@
         <a onclick="history.back()" class="save-btn">Back</a>
     </div>
     <main>
-        <form id="search">
-            <input class="input-fields" type="text" id="username" placeholder="Username">
-            <button class="new-btn" type="submit" id="goSearch">Search</button>
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+            <input class="input-fields" type="text" formControlName="username" placeholder="Username">
+            <button class="new-btn" type="submit" [disabled]="searchForm.invalid" id="search">Search</button>
         </form>
         <div id="search-results">
+            <article id="list-container">
+                @if(error) {
+                    <p>{{ error }}</p>
+                }
+                @for (list of lists; track list; let i = $index) {
+                  <div class="list-card" [attr.id]="'list-card-' + i">
+                      <a
+                        [routerLink]="'/items/'+ list._id"
+                        class="list-text"
+                        [attr.id]="'list-text-' + i"
+                        [attr.title]="'Go to list ' + list.title"
+                      >
+                      <p>
+                          {{ list.title }}
+                      </p>
+                      <p>
+                          {{list.description}}
+                      </p>
+                      @if (list.username) {
+                          <p>
+                              {{list.username}}
+                          </p>
+                      }
+                      </a>
+                      <img src="wishlist.png" alt="woman on her phone">
+
+                      </div>
+                    }
+            </article>
         </div>
     </main>
 </body>

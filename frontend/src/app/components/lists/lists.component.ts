@@ -36,7 +36,7 @@ export class ListsComponent implements OnInit {
     this.userService.getProfile().subscribe({
       next: data => {
         this.user = data;
-        console.log(this.user._id)
+        // console.log(this.user._id)
       }, 
       error: (err: unknown) => {
         if(err instanceof Error) {
