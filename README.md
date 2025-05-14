@@ -15,14 +15,25 @@ Regret something or you already received it? Delete it from the list! Changed yo
 As a regular visitor you may browse the existing lists and items in each list.   
 As a logged in user you are able to create, edit and delete lists, and the items in the list, however you cannot edit or delete someone elses list or its items. You can also update your name and email.    
 
+# Navigation
++ [Getting started](#getting-started)
++ [Want to add a new feature](#want-to-add-a-feature)
++ [Testing](#testing)
++ [Deploy](#deploy)
++ [Design](#design)
+
 
 ## Getting started
+[Back to start](#welcome-to-wishlist)  
+  
 + ```git clone https://github.com/chas-academy/u08-angular-frontend-Chokladglasyr.git ```
 + ```cd frontend```
 + ```npm install```
 + ```npm start```
 
 ## Want to add a feature?
+[Back to start](#welcome-to-wishlist)  
+  
 + Once in frontend folder you can create a new component.
     - ```ng generate component components/yournameofthecomponent```
 + You will now find 4 new files under the folder with the name of your new component, in the components folder. 
@@ -38,12 +49,64 @@ As a logged in user you are able to create, edit and delete lists, and the items
 + You add the service into the constructor in the component to be able to use it. 
 + Don't forget to add you routes to your component! This is done in the app.routes.ts file.
     - ```{path: 'yourpathwithoutastartingslash', component: yourComponent}```
++ Future features:
+    - Search items by user and price range
+    - Edit items
+    - Create new item
+  
+   
+## Testing
+[Back to start](#welcome-to-wishlist)  
+  
+run ```ng test``` to run all tests.  
+To run a specific test: ```ng test --include {path}```  
+
+Add a test:
++ Go to the .spec.ts file for your component.
++ Add your test in the list of other tests
++ Add providers if needed. 
+
+For every new component and services Angular creates a test file, its comes with one "it should create" test. I created three myself:  
+  
+In the login.spec.ts:  
+```
+  it('should have an input with type email', () => {
+    const loginDe: DebugElement = fixture.debugElement;
+    const loginEl: HTMLElement = loginDe.nativeElement;
+    const input = loginEl.querySelectorAll('input[type="email]');
+    expect(input).toBeTruthy();
+  })
+  ```
+
+In the home.spec.ts:  
+```
+  it('should have three anchor tags', () => {
+    const homeElement: HTMLElement = fixture.nativeElement;
+    const a = homeElement.querySelectorAll('a');
+    console.log(a)
+    expect(a.length + 1).toBeGreaterThanOrEqual(3);
+  });
+  ```
+    
+In the lists.spec.ts:
+```
+  it('should have a list container for all list cards', () => {
+    const listsDe: DebugElement = fixture.debugElement;
+    const listsEl: HTMLElement = listsDe.nativeElement;
+    const container = listsEl.querySelector('#list-container')
+    expect(container).toBeTruthy();
+  })
+  ```
 
 
-### Deploy  
+## Deploy  
+[Back to start](#welcome-to-wishlist)  
+  
 For this assignment we used Netlify. You can find my work [here]().
 
-### Design
+## Design
+[Back to start](#welcome-to-wishlist)  
+  
 <img src="/assets/wishlist.png" width="200px">    
   
 [Figma](https://www.figma.com/design/VDilkI4u1PNdBnRvvUf8nw/U06?node-id=15-189&t=IT5BfNWCtzmFGOkz-1)
