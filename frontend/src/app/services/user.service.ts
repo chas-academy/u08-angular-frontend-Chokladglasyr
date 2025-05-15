@@ -7,15 +7,16 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://127.0.0.1:3003/users'
+  private apiUrl = import.meta.env.NODE_ENV === "dev" ? import.meta.env.NG_APP_API_URL_LOCAL : import.meta.env.NG_APP_API_URL_PROD;
+
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}`)
+    return this.http.get<User[]>(`${this.apiUrl}/users`)
   }
   getProfile(): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/profile`)
+    return this.http.get<User>(`${this.apiUrl}/users/profile`)
   }
   getUserById(userId: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/${userId}`)
@@ -29,10 +30,10 @@ export class UserService {
       title: updatedName,
       description: updatedEmail
     }
-    return this.http.put<User>(`${this.apiUrl}/edit/${userId}`, body)
+    return this.http.put<User>(`${this.apiUrl}/users/edit/${userId}`, body)
   }
   deleteUser(userId: string): Observable<User> {
-    return this.http.delete<User>(`${this.apiUrl}/${userId}`)
+    return this.http.delete<User>(`${this.apiUrl}/users/${userId}`)
   }
 }
 

@@ -7,7 +7,8 @@ import { List } from '../models/list.model';
   providedIn: 'root'
 })
 export class SearchService {
-  private apiUrl = 'http://127.0.0.1:3003'
+  private apiUrl = import.meta.env.NODE_ENV === "dev" ? import.meta.env.NG_APP_API_URL_LOCAL : import.meta.env.NG_APP_API_URL_PROD;
+
   constructor(private http: HttpClient) { }
 
   getListsByUsername(username: string): Observable<List[] | string>  {

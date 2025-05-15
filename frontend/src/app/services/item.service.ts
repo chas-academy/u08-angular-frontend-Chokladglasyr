@@ -8,11 +8,12 @@ import { Item } from '../models/item.model';
   providedIn: 'root'
 })
 export class ItemService {
-private apiUrl = 'http://127.0.0.1:3003/items/'
+  private apiUrl = import.meta.env.NODE_ENV === "dev" ? import.meta.env.NG_APP_API_URL_LOCAL : import.meta.env.NG_APP_API_URL_PROD;
+
 
   constructor(private http: HttpClient) { }
 
   getItems(listId: string): Observable<Item[]> {
-    return this.http.get<Item[]>(`${this.apiUrl}${listId}`)
+    return this.http.get<Item[]>(`${this.apiUrl}/items/${listId}`)
   }
 }
