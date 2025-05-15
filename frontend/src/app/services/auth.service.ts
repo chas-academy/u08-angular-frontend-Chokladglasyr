@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable } from 'rxjs';
 import { Login } from '../models/login.model';
 import { TokenService } from './token.service';
 
@@ -14,11 +14,13 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   loggedIn$ = this.loggedIn.asObservable;
 
-  private apiUrl = 'http://127.0.0.1:3003/'
+
+  private apiUrl = import.meta.env.NODE_ENV === "dev" ? import.meta.env.NG_APP_API_URL_LOCAL : import.meta.env.NG_APP_API_URL_PROD;
+ 
   private httpHeaders = {
     headers: new HttpHeaders({
       'Content-type': 'application/json'
-    })
+    })  
   }
   constructor(private http: HttpClient, private token: TokenService) { }
 
@@ -30,7 +32,8 @@ export class AuthService {
     this.loggedIn.next(loginState);
   }
   loginUser(loginDetails: Login) {
-    this.http.post<LoginResult>(this.apiUrl+'login', loginDetails, this.httpHeaders).subscribe(result => {
+    console.log(this.apiUrl)
+    this.http.post<LoginResult>(this.apiUrl+'/login', loginDetails, this.httpHeaders).subscribe(result => {
       this.token.setToken(result.accessToken)
       this.updateLoginState(true);
       this.httpHeaders.headers = this.httpHeaders.headers.set('Authorization', result.accessToken)

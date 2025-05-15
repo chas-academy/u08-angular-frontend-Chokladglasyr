@@ -8,12 +8,12 @@
             <button class="new-btn" type="submit" [disabled]="searchForm.invalid" id="search">Search</button>
         </form>
         <div id="search-results">
-            <article id="list-container">
+            <article id="list-container" #listContainer>
                 @if(error) {
-                    <p>{{ error }}</p>
+                    <p>{{ error}}</p>
                 }
                 @for (list of lists; track list; let i = $index) {
-                  <div class="list-card" [attr.id]="'list-card-' + i">
+                  <div class="list-card" [attr.id]="'list-card-' + i" #listCard>
                       <a
                         [routerLink]="'/items/'+ list._id"
                         class="list-text"
