@@ -37,7 +37,7 @@ export class AuthService {
       this.token.setToken(result.accessToken)
       this.updateLoginState(true);
       this.httpHeaders.headers = this.httpHeaders.headers.set('Authorization', result.accessToken)
-
+      window.location.reload();
     })
   }
   logOut() {
