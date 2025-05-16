@@ -4,6 +4,7 @@ import { LoginComponent } from './login.component';
 import { DebugElement } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -14,7 +15,8 @@ describe('LoginComponent', () => {
       imports: [LoginComponent],
       providers: [
         provideHttpClient(),
-        provideHttpClientTesting
+        provideHttpClientTesting,
+        provideRouter([])
       ]
     })
     .compileComponents();
