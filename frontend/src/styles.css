@@ -55,6 +55,7 @@ img {
     border: solid black 1px;
     width: 224px;
     height: 32px;
+    padding: 1rem;
 }
 .btn-green, .btn-red {
     width: 48px;

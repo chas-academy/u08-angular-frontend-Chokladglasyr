@@ -1,0 +1,9 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <input class="input-fields" type="text" formControlName="name" placeholder="Name" required>
+    <input class="input-fields" type="email" formControlName="email" placeholder="Email" required>
+    <input class="input-fields" type="password" formControlName="password" placeholder="Password" required>
+    <input class="input-fields" type="password" formControlName="confirmed_password" placeholder="Confirm password" required>
+    <button class="login" id="signup" [disabled]="registerForm.invalid" type="submit">Signup</button>
+    <p>Already signed up?</p>
+    <a onclick="history.back()" class="login" id="login">Login</a>
+</form>

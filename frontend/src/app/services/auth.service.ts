@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable } from 'rxjs';
 import { Login } from '../models/login.model';
 import { TokenService } from './token.service';
+import { User } from '../models/user.model';
 
 interface LoginResult {
   accessToken: string
@@ -37,8 +38,11 @@ export class AuthService {
       this.token.setToken(result.accessToken)
       this.updateLoginState(true);
       this.httpHeaders.headers = this.httpHeaders.headers.set('Authorization', result.accessToken)
-
+      window.location.reload();
     })
+  }
+  registerUser(newUser: Omit<User, 'id'>) {
+    return this.http.post<User>(this.apiUrl+'/register', newUser)
   }
   logOut() {
     this.token.destroyToken();

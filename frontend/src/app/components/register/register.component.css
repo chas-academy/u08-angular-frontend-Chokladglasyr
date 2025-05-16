@@ -1,0 +1,25 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 224px;
+    gap: 1.5rem;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 20rem;
+  
+}
+a, button {
+    display: flex;
+    width: 120px;
+    height: 36px;
+    border-radius: 20px;
+    border: none;
+    background-color: #8ECC7B;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+button {
+    background-color: #195F8B;
+    color: white;
+}

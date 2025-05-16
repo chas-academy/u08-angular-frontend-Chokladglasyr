@@ -1,5 +1,5 @@
 <form [formGroup]="newListForm" (ngSubmit)="onSubmit()" class="new-list">
-<input type="text" formControlName="title" class="input-fields">
-<input type="text" formControlName="description" class="input-fields">
-<button type="submit" [disabled]="newListForm.invalid">Save</button>
+<input type="text" formControlName="title" class="input-fields" placeholder="Title">
+<input type="text" formControlName="description" class="input-fields" placeholder="Description">
+<button class="new-btn" type="submit" [disabled]="newListForm.invalid">Save</button>
 </form>
