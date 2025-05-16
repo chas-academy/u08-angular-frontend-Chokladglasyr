@@ -7,6 +7,7 @@ import { SearchItemsComponent } from './components/search-items/search-items.com
 import { NewListComponent } from './components/new-list/new-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { RegisterComponent } from './components/register/register.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -16,5 +17,6 @@ export const routes: Routes = [
     {path: 'searchprice', component: SearchItemsComponent},
     {path: 'new-list', component: NewListComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'edit-user', component: EditUserComponent}
+    {path: 'edit-user', component: EditUserComponent},
+    {path: 'register', component: RegisterComponent}
 ];
